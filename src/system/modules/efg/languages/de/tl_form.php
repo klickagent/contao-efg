@@ -30,8 +30,12 @@ $GLOBALS['TL_LANG']['tl_form']['confirmationMailAttachments'] = array('Dateianh�
 $GLOBALS['TL_LANG']['tl_form']['addFormattedMailAttachments'] = array('Dateien an E-Mail anhängen', 'Der E-Mail können hier Dateien zum Versand angehängt werden.');
 $GLOBALS['TL_LANG']['tl_form']['formattedMailAttachments'] = array('Dateianhänge', 'Bitte wählen Sie hier die anzuhängenden Dateien aus.');
 $GLOBALS['TL_LANG']['tl_form']['sendFormattedMail'] = array('Per E-Mail versenden (formatierter Text / HTML)', 'Der Inhalt der Nachricht kann frei angegeben werden, unter Verwendung von Insert-Tags. Die Nachricht kann auch als HTML-E-Mail versendet werden.');
+$GLOBALS['TL_LANG']['tl_form']['formattedMailSenderField'] = array('Formularfeld mit E-Mail-Adresse des Senders', 'Wählen Sie hier das Formularfeld, in dem der Absender seine E-Mail-Adresse angibt oder ein Formularfeld, das die Sende-Adresse als Wert enthält.');
+$GLOBALS['TL_LANG']['tl_form']['formattedMailSender'] = array('Absender', 'Bitte geben Sie hier die Absender-E-Mail-Adresse ein.');
 $GLOBALS['TL_LANG']['tl_form']['formattedMailText'] = array('Text der E-Mail', 'Bitte geben Sie hier den Text der E-Mail ein. Neben den allgemeinen Insert-Tags werden Tags der Form form::FORMULARFELDNAME unterstützt.');
 $GLOBALS['TL_LANG']['tl_form']['formattedMailTemplate'] = array('HTML-Vorlage für die E-Mail', 'Wenn die E-Mail als HTML-E-Mail versendet werden soll, wählen Sie hier die HTML-Vorlage aus dem Dateisystem.');
 $GLOBALS['TL_LANG']['tl_form']['efgStoreFormdata_legend'] = '(EFG) Formular-Daten speichern';
 $GLOBALS['TL_LANG']['tl_form']['efgSendFormattedMail_legend'] = '(EFG) Per E-Mail versenden';
 $GLOBALS['TL_LANG']['tl_form']['efgSendConfirmationMail_legend'] = '(EFG) Bestätigung per E-Mail versenden';
+
+

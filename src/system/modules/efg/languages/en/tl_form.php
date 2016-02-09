@@ -33,9 +33,12 @@ $GLOBALS['TL_LANG']['tl_form']['confirmationMailAttachments'] = array('Attachmen
 $GLOBALS['TL_LANG']['tl_form']['addFormattedMailAttachments'] = array('Add attachments to e-mail', 'You can select files that will be sent as attachments to the e-mail.');
 $GLOBALS['TL_LANG']['tl_form']['formattedMailAttachments'] = array('Attachments', 'Pleae choose files to attach.');
 $GLOBALS['TL_LANG']['tl_form']['sendFormattedMail'] = array('Send form data via e-mail (formatted text or html)', 'The text of mail can be defined using insert tags. Mail can be sent as HTML mail.');
+$GLOBALS['TL_LANG']['tl_form']['formattedMailSenderField'] = array('Form field containing e-mail of sender', 'Choose the form field in which the user enters his e-mail address or a field containing the e-mail address as value.');
+$GLOBALS['TL_LANG']['tl_form']['formattedMailSender'] = array('Sender', 'Please enter e-mail address to be used as sender.');
 $GLOBALS['TL_LANG']['tl_form']['formattedMailText'] = array('Text of mail', 'Please enter the text of mail. You can use standard insert tags and tags like form::NAME_OF_FORMFIELD .');
 $GLOBALS['TL_LANG']['tl_form']['formattedMailTemplate'] = array('HTML-template for mail', 'If mail should be sent as HTML mail, please choose your HTML-template from file system.');
 
 $GLOBALS['TL_LANG']['tl_form']['efgStoreFormdata_legend'] = '(EFG) Store form data';
 $GLOBALS['TL_LANG']['tl_form']['efgSendFormattedMail_legend'] = '(EFG) Send via e-mail';
 $GLOBALS['TL_LANG']['tl_form']['efgSendConfirmationMail_legend'] = '(EFG) Send confirmation via e-mail';
+

@@ -160,6 +160,25 @@ $GLOBALS['TL_DCA']['tl_form']['fields']['sendFormattedMail'] = array
 	'sql'                     => "char(1) NOT NULL default ''"
 );
 
+$GLOBALS['TL_DCA']['tl_form']['fields']['formattedMailSenderField'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_form']['formattedMailSenderField'],
+	'exclude'                 => true,
+	'filter'                  => false,
+	'inputType'               => 'select',
+	'options_callback'        => array('tl_form_efg', 'getEmailFormFields'),
+	'eval'                    => array('chosen'=>true, 'mandatory'=>false, 'maxlength'=>64, 'tl_class'=>'w50'),
+	'sql'                     => "varchar(64) NOT NULL default ''"
+);
+$GLOBALS['TL_DCA']['tl_form']['fields']['formattedMailSender'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_form']['formattedMailSender'],
+	'exclude'                 => true,
+	'filter'                  => false,
+	'inputType'               => 'text',
+	'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'tl_class'=>'w50'),
+	'sql'                     => "varchar(255) NOT NULL default ''"
+);
 $GLOBALS['TL_DCA']['tl_form']['fields']['formattedMailRecipient'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_form']['recipient'],
@@ -254,7 +273,7 @@ $GLOBALS['TL_DCA']['tl_form']['palettes']['default'] =  str_replace(array('store
 
 // Subpalettes
 array_insert($GLOBALS['TL_DCA']['tl_form']['subpalettes'], count($GLOBALS['TL_DCA']['tl_form']['subpalettes']),
-	array('sendFormattedMail' => 'formattedMailRecipient,formattedMailSubject,formattedMailText,formattedMailTemplate,formattedMailSkipEmpty,addFormattedMailAttachments')
+	array('sendFormattedMail' => 'formattedMailSenderField,formattedMailSender,formattedMailRecipient,formattedMailSubject,formattedMailText,formattedMailTemplate,formattedMailSkipEmpty,addFormattedMailAttachments')
 );
 array_insert($GLOBALS['TL_DCA']['tl_form']['subpalettes'], count($GLOBALS['TL_DCA']['tl_form']['subpalettes']),
 	array('addFormattedMailAttachments' => 'formattedMailAttachments')

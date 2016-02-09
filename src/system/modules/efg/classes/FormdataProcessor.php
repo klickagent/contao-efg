@@ -31,6 +31,54 @@ class FormdataProcessor extends \Frontend
 
 	protected $strFormdataDetailsKey = 'details';
 
+	/**
+	 * Get email field value from form data (if available)
+	 * @param array $arrSubmitted Submitted data
+	 * @return string|void
+	 */
+	protected function getEmailFromData($arrSubmitted, $strDefault = null) {
+		foreach (preg_grep('/^(mail|email)$/i', array_keys($arrSubmitted)) as $strKey) {
+			if (!empty($arrSubmitted[$strKey]) && !is_bool(strpos($arrSubmitted[$strKey], '@'))) {
+				return $arrSubmitted[$strKey];
+			}
+		}
+
+		return $strDefault;
+	}
+
+	/**
+	 * Get name field value (name or firstname, lastname) from form data (if available)
+	 * @param array $arrSubmitted Submitted data
+	 * @return string|void
+	 */
+	protected function getNameFromData($arrSubmitted, $strDefault=null) {
+		$arrName = null;
+		$arrKeys = array_keys($arrSubmitted);
+
+		foreach (preg_grep('/^(first_?name|last_?name)$/i', $arrKeys) as $strKey)
+		{
+			if (!empty($arrSubmitted[$strKey]))
+			{
+				$arrName[] = $arrSubmitted[$strKey];
+			}
+		}
+
+		if (!$arrName) {
+			foreach (preg_grep('/^name$/i', $arrKeys) as $strKey)
+			{
+				if (!empty($arrSubmitted[$strKey]))
+				{
+					$arrName[] = $arrSubmitted[$strKey];
+				}
+			}
+		}
+
+		if (!$arrName && $strDefault) {
+			$arrName[] = $strDefault;
+		}
+
+		return implode(' ', $arrName);
+	}
 
 	/**
 	 * Process submitted form data
@@ -546,20 +594,41 @@ class FormdataProcessor extends \Frontend
 
 			$objMailProperties->skipEmptyFields = ($arrForm['formattedMailSkipEmpty']) ? true : false;
 
-			// Set the admin e-mail as "from" address
-			$objMailProperties->sender = $GLOBALS['TL_ADMIN_EMAIL'];
-			$objMailProperties->senderName = $GLOBALS['TL_ADMIN_NAME'];
+			// Set sender
+			$senderFieldName = $arrForm['formattedMailSenderField'];
 
-			// Get 'reply to' address, if form contains field named 'email'
-			if (isset($arrSubmitted['email']) && !empty($arrSubmitted['email']) && !is_bool(strpos($arrSubmitted['email'], '@')))
+			if (!empty($arrSubmitted[$senderFieldName]) && !is_array($arrSubmitted[$senderFieldName]))
 			{
-				$replyTo = $arrSubmitted['email'];
-				// add name
-				if (isset($arrSubmitted['name']) && !empty($arrSubmitted['name']))
-				{
-					$replyTo = '"'. $arrSubmitted['name'] .'" <' . $arrSubmitted['email'] . '>';
+				$objMailProperties->sender = $arrSubmitted[$senderFieldName];
+				$objMailProperties->senderName = $this->getNameFromData($arrSubmitted);
+
+			}
+			elseif (!empty($arrForm['formattedMailSender']))
+			{
+				list($senderName, $sender) = \String::splitFriendlyEmail($this->replaceInsertTags($arrForm['formattedMailSender'], false));
+
+				$objMailProperties->sender = $sender;
+				$objMailProperties->senderName = $senderName;
+			}
+
+			// Old default behaviour
+			else {
+				// Set the admin e-mail as "from" address
+				$objMailProperties->sender = $GLOBALS['TL_ADMIN_EMAIL'];
+				$objMailProperties->senderName = $GLOBALS['TL_ADMIN_NAME'];
+
+				// Set 'reply to' address, if form contains fields for email and name
+				$strEmail = $this->getEmailFromData($arrSubmitted);
+				$strName = $this->getNameFromData($arrSubmitted);
+
+				if (!empty($strEmail)) {
+					if (!empty($strName)) {
+						$objMailProperties->replyTo = '"' . $strName . '" <' . $strEmail . '>';
+					}
+					else {
+						$objMailProperties->replyTo = $strEmail;
+					}
 				}
-				$objMailProperties->replyTo = $replyTo;
 			}
 
 			// Set recipient(s)

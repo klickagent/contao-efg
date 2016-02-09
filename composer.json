@@ -1,0 +1,41 @@
+{
+  "name": "byteworks/efg",
+  "description": "Contao Extended Form Generator",
+  "keywords": [
+    "export",
+    "excel"
+  ],
+  "type": "contao-module",
+  "homepage": "http://www.aurealis.de",
+  "license": [
+    "LGPL"
+  ],
+  "authors": [
+    {
+      "name": "Thomas Kuhn",
+      "homepage": "https://bitbucket.org/thk/efg",
+      "role": "Developer"
+    },
+    {
+      "name": "Michael Bischof",
+      "email": "mb@hinderlingvolkart.com",
+      "homepage": "http://www.hinderlingvolkart.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/byteworks-ch/contao-efg/issues"
+  },
+  "require": {
+    "contao/core": ">=3.0.0,<4.0.0-dev",
+    "contao-community-alliance/composer-installer": "*",
+    "contao-legacy/xls_export": ">=3.0.0,<4.0.0-dev"
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "src/system/modules/efg": "system/modules/efg"
+      }
+    }
+  }
+}

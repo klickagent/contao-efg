@@ -16,6 +16,9 @@
 $GLOBALS['TL_DCA']['tl_form_field']['list']['sorting']['headerFields'][] = 'storeFormdata';
 $GLOBALS['TL_DCA']['tl_form_field']['list']['sorting']['headerFields'][] = 'sendConfirmationMail';
 
+// Override core: make sure form field name only contains sane characters
+$GLOBALS['TL_DCA']['tl_form_field']['fields']['name']['eval']['rgxp'] = 'alnum';
+
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['efgLookupOptions'] = array
 (
 	'label'        => &$GLOBALS['TL_LANG']['tl_form_field']['efgLookupOptions'],

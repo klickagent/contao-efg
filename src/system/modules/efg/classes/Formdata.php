@@ -1930,7 +1930,7 @@ class Formdata extends \Frontend
 							}
 							else
 							{
-								if ($span > 1)
+								if ($span > 0)
 								{
 									$strTime .= ' - ' . date($GLOBALS['TL_CONFIG']['dateFormat'], $arrEvent['endTime']);
 								}
